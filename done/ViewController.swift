@@ -8,8 +8,8 @@
 import UIKit
 import UserNotifications
 
-class ViewController: UIViewController {
-
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -21,6 +21,19 @@ class ViewController: UIViewController {
         
         self.navigationItem.rightBarButtonItem = button
         view.backgroundColor = .systemBackground
+        
+        let tableView = UITableView()
+        view.addSubview(tableView)
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        
+        tableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        tableView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+        tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        tableView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         
         grandAuthorization()
         
@@ -59,6 +72,17 @@ class ViewController: UIViewController {
         return content
     }
 
-
 }
 
+
+extension ViewController {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        cell.textLabel?.text = "Alarm 1"
+        return cell
+    }
+}
