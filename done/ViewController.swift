@@ -16,19 +16,33 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         // Do any additional setup after loading the view.
         
         setupTableView()
+        setupBarButton()
         self.navigationItem.title = "Alarms"
         view.backgroundColor = .systemBackground
         
         grandAuthorization()
         let content = setUpNotificationContent()
         setupNotificationCenter(content)
-        
+
     }
     
     func setupBarButton() {
-        let button = UIBarButtonItem()
-        button.title = "Add"
+        let button = UIBarButtonItem(title: "Add", style: .plain, target: self, action:  #selector(openAddView))
+        
         self.navigationItem.rightBarButtonItem = button
+    }
+    
+    @objc func openAddView() {
+        // Create a new instance of the view controller you want to open
+        let newAlarmViewController = NewAlarmViewController()
+
+        // Get a reference to the navigation controller
+        guard let navigationController = self.navigationController else {
+            return
+        }
+
+        // Push the new view controller onto the navigation stack
+        navigationController.pushViewController(newAlarmViewController, animated: true)
     }
     
     func setupTableView() {
@@ -90,7 +104,6 @@ extension ViewController {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        print( alarms[indexPath.row].label)
         cell.textLabel?.text = alarms[indexPath.row].label
         return cell
     }
