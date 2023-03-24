@@ -16,6 +16,7 @@
 		2F23CEAA29C88CDB005F7CB8 /* doneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F23CEA929C88CDB005F7CB8 /* doneTests.swift */; };
 		2F23CEB429C88CDB005F7CB8 /* doneUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F23CEB329C88CDB005F7CB8 /* doneUITests.swift */; };
 		2F23CEB629C88CDB005F7CB8 /* doneUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F23CEB529C88CDB005F7CB8 /* doneUITestsLaunchTests.swift */; };
+		2F23CEC329CDC4CF005F7CB8 /* Alarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F23CEC229CDC4CF005F7CB8 /* Alarm.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		2F23CEAF29C88CDB005F7CB8 /* doneUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = doneUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F23CEB329C88CDB005F7CB8 /* doneUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = doneUITests.swift; sourceTree = "<group>"; };
 		2F23CEB529C88CDB005F7CB8 /* doneUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = doneUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		2F23CEC229CDC4CF005F7CB8 /* Alarm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alarm.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 				2F23CE9229C88CDA005F7CB8 /* AppDelegate.swift */,
 				2F23CE9429C88CDA005F7CB8 /* SceneDelegate.swift */,
 				2F23CE9629C88CDA005F7CB8 /* ViewController.swift */,
+				2F23CEC229CDC4CF005F7CB8 /* Alarm.swift */,
 				2F23CE9829C88CDA005F7CB8 /* Main.storyboard */,
 				2F23CE9B29C88CDB005F7CB8 /* Assets.xcassets */,
 				2F23CE9D29C88CDB005F7CB8 /* LaunchScreen.storyboard */,
@@ -261,6 +264,7 @@
 				2F23CE9729C88CDA005F7CB8 /* ViewController.swift in Sources */,
 				2F23CE9329C88CDA005F7CB8 /* AppDelegate.swift in Sources */,
 				2F23CE9529C88CDA005F7CB8 /* SceneDelegate.swift in Sources */,
+				2F23CEC329CDC4CF005F7CB8 /* Alarm.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

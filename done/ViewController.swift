@@ -9,44 +9,41 @@ import UIKit
 import UserNotifications
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    let alarms: [String] = ["Wake up"]
-    
-    lazy var tableView = {
-        let tableView = UITableView()
-        
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        
-        tableView.delegate = self
-        tableView.dataSource = self
-        
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
-        return tableView
-    }()
+    let alarms: [Alarm] = [Alarm.test]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
+        setupTableView()
         self.navigationItem.title = "Alarms"
-        let button = UIBarButtonItem()
-        button.title = "Add"
-        self.navigationItem.rightBarButtonItem = button
         view.backgroundColor = .systemBackground
         
         grandAuthorization()
-        
         let content = setUpNotificationContent()
-        
         setupNotificationCenter(content)
         
     }
     
+    func setupBarButton() {
+        let button = UIBarButtonItem()
+        button.title = "Add"
+        self.navigationItem.rightBarButtonItem = button
+    }
+    
     func setupTableView() {
+        let tableView = UITableView()
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         view.addSubview(tableView)
         tableView.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
         tableView.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
         tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
         tableView.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
     }
     
     func grandAuthorization() {
@@ -93,7 +90,8 @@ extension ViewController {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        cell.textLabel?.text = alarms[indexPath.item]
+        print( alarms[indexPath.row].label)
+        cell.textLabel?.text = alarms[indexPath.row].label
         return cell
     }
 }
