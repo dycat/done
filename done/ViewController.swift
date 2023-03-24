@@ -11,6 +11,18 @@ import UserNotifications
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     let alarms: [String] = ["Wake up"]
     
+    lazy var tableView = {
+        let tableView = UITableView()
+        
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+        
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+        return tableView
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -18,42 +30,23 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.navigationItem.title = "Alarms"
         let button = UIBarButtonItem()
         button.title = "Add"
-        
-        
         self.navigationItem.rightBarButtonItem = button
         view.backgroundColor = .systemBackground
-        
-        let tableView = UITableView()
-        view.addSubview(tableView)
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        
-        tableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        tableView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        tableView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-        
-        tableView.delegate = self
-        tableView.dataSource = self
-        
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         
         grandAuthorization()
         
         let content = setUpNotificationContent()
         
-        var dateComponents = DateComponents()
-        dateComponents.hour = 21
-        dateComponents.minute = 39
+        setupNotificationCenter(content)
         
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
-        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
-        
-        let notificationCenter = UNUserNotificationCenter.current()
-        notificationCenter.add(request) { err in
-            if let err = err {
-                print("Error scheduling notification: \(err.localizedDescription)")
-            }
-        }
+    }
+    
+    func setupTableView() {
+        view.addSubview(tableView)
+        tableView.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
+        tableView.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
+        tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
+        tableView.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true
     }
     
     func grandAuthorization() {
@@ -72,6 +65,22 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         content.body = "It's time to start your day."
         content.sound = UNNotificationSound.default
         return content
+    }
+    
+    func setupNotificationCenter (_ content: UNNotificationContent) {
+        var dateComponents = DateComponents()
+        dateComponents.hour = 21
+        dateComponents.minute = 39
+        
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+        
+        let notificationCenter = UNUserNotificationCenter.current()
+        notificationCenter.add(request) { err in
+            if let err = err {
+                print("Error scheduling notification: \(err.localizedDescription)")
+            }
+        }
     }
 
 }
