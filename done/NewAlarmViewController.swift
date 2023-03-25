@@ -8,12 +8,28 @@
 import UIKit
 
 class NewAlarmViewController: UIViewController {
-
+    
+    let labelTextField = {
+        let textField = UITextField()
+        textField.text = "Alarm"
+        textField.textColor = .label
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        return textField
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         view.backgroundColor = .systemBackground
+        setupLabelTextField()
+    }
+    
+    func setupLabelTextField() {
+        let magin = view.layoutMarginsGuide
+        view.addSubview(labelTextField)
+        labelTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        labelTextField.topAnchor.constraint(equalTo: magin.topAnchor).isActive = true
     }
     
 
