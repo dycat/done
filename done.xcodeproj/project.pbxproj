@@ -53,6 +53,7 @@
 		2F23CEB529C88CDB005F7CB8 /* doneUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = doneUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		2F23CEC229CDC4CF005F7CB8 /* Alarm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alarm.swift; sourceTree = "<group>"; };
 		2F23CEC429CDC97F005F7CB8 /* NewAlarmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewAlarmViewController.swift; sourceTree = "<group>"; };
+		2FCA270729D03432008E86B7 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +113,7 @@
 				2F23CE9B29C88CDB005F7CB8 /* Assets.xcassets */,
 				2F23CE9D29C88CDB005F7CB8 /* LaunchScreen.storyboard */,
 				2F23CEA029C88CDB005F7CB8 /* Info.plist */,
+				2FCA270729D03432008E86B7 /* README.md */,
 			);
 			path = done;
 			sourceTree = "<group>";
