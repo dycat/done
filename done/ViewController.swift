@@ -48,7 +48,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func setupTableView() {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+//        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+        tableView.register(AlarmTableViewCell.self, forCellReuseIdentifier: "Cell")
         view.addSubview(tableView)
         tableView.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
         tableView.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
@@ -57,7 +58,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         tableView.delegate = self
         tableView.dataSource = self
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
     }
     
     func grandAuthorization() {
@@ -103,8 +103,9 @@ extension ViewController {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        cell.textLabel?.text = alarms[indexPath.row].label
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! AlarmTableViewCell
+        cell.label.text = alarms[indexPath.row].label
+        cell.time.text = alarms[indexPath.row].time
         return cell
     }
 }

@@ -18,6 +18,7 @@
 		2F23CEB629C88CDB005F7CB8 /* doneUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F23CEB529C88CDB005F7CB8 /* doneUITestsLaunchTests.swift */; };
 		2F23CEC329CDC4CF005F7CB8 /* Alarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F23CEC229CDC4CF005F7CB8 /* Alarm.swift */; };
 		2F23CEC529CDC97F005F7CB8 /* NewAlarmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F23CEC429CDC97F005F7CB8 /* NewAlarmViewController.swift */; };
+		2FCA274129D03F4E008E86B7 /* AlarmTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCA274029D03F4E008E86B7 /* AlarmTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,7 @@
 		2F23CEC229CDC4CF005F7CB8 /* Alarm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alarm.swift; sourceTree = "<group>"; };
 		2F23CEC429CDC97F005F7CB8 /* NewAlarmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewAlarmViewController.swift; sourceTree = "<group>"; };
 		2FCA270729D03432008E86B7 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		2FCA274029D03F4E008E86B7 /* AlarmTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +111,7 @@
 				2F23CE9629C88CDA005F7CB8 /* ViewController.swift */,
 				2F23CEC429CDC97F005F7CB8 /* NewAlarmViewController.swift */,
 				2F23CEC229CDC4CF005F7CB8 /* Alarm.swift */,
+				2FCA274029D03F4E008E86B7 /* AlarmTableViewCell.swift */,
 				2F23CE9829C88CDA005F7CB8 /* Main.storyboard */,
 				2F23CE9B29C88CDB005F7CB8 /* Assets.xcassets */,
 				2F23CE9D29C88CDB005F7CB8 /* LaunchScreen.storyboard */,
@@ -271,6 +274,7 @@
 				2F23CE9529C88CDA005F7CB8 /* SceneDelegate.swift in Sources */,
 				2F23CEC529CDC97F005F7CB8 /* NewAlarmViewController.swift in Sources */,
 				2F23CEC329CDC4CF005F7CB8 /* Alarm.swift in Sources */,
+				2FCA274129D03F4E008E86B7 /* AlarmTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

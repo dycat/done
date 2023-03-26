@@ -9,9 +9,11 @@ import Foundation
 
 struct Alarm {
     var label: String
+    var time: String
+    var isOn: Bool
 }
 
 
 extension Alarm {
-    static var test: Alarm = Alarm(label: "Morning")
+    static var test: Alarm = Alarm(label: "Morning", time: "8:00", isOn: true)
 }
