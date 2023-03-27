@@ -28,7 +28,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func setupBarButton() {
         let button = UIBarButtonItem(title: "Add", style: .plain, target: self, action:  #selector(openAddView))
-        
         self.navigationItem.rightBarButtonItem = button
     }
     
@@ -48,7 +47,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func setupTableView() {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
-//        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         tableView.register(AlarmTableViewCell.self, forCellReuseIdentifier: "Cell")
         view.addSubview(tableView)
         tableView.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
