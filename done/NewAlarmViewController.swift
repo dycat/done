@@ -9,7 +9,7 @@ import UIKit
 
 class NewAlarmViewController: UIViewController {
     
-    var isRepeat = false
+    var label = "Alarm"
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,11 +43,11 @@ class NewAlarmViewController: UIViewController {
         isRepeatSwitch.leftAnchor.constraint(equalTo: isRepeatLabel.rightAnchor, constant: 40).isActive = true
         isRepeatSwitch.topAnchor.constraint(equalTo: timeLabel.bottomAnchor, constant: 40).isActive = true
         
-        if isRepeat {
-            view.addSubview(frequencyLabel)
-            frequencyLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 40).isActive = true
-            frequencyLabel.topAnchor.constraint(equalTo: isRepeatLabel.bottomAnchor, constant: 40).isActive = true
-        }
+        view.addSubview(frequencyLabel)
+        frequencyLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 40).isActive = true
+        frequencyLabel.topAnchor.constraint(equalTo: isRepeatLabel.bottomAnchor, constant: 40).isActive = true
+        
+        isRepeatSwitch.addTarget(self, action: #selector(switchOnOff), for: .valueChanged)
         
         view.addSubview(cancelButton)
         cancelButton.bottomAnchor.constraint(equalTo: magin.bottomAnchor, constant: -80).isActive = true
@@ -57,6 +57,10 @@ class NewAlarmViewController: UIViewController {
         saveButton.bottomAnchor.constraint(equalTo: cancelButton.topAnchor, constant: -20).isActive = true
         saveButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         
+    }
+    
+    @objc func switchOnOff() {
+        frequencyLabel.isHidden.toggle()
     }
     
     func setupLabelTextField() {
@@ -128,6 +132,7 @@ class NewAlarmViewController: UIViewController {
     let frequencyLabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.isHidden = true
         label.text = "Frequency"
         return label
     }()
