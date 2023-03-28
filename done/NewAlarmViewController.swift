@@ -7,9 +7,10 @@
 
 import UIKit
 
-class NewAlarmViewController: UIViewController {
+class NewAlarmViewController: UIViewController, UITextFieldDelegate {
     
     var label = "Alarm"
+    var date = Date()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +35,8 @@ class NewAlarmViewController: UIViewController {
         view.addSubview(datePicker)
         datePicker.leftAnchor.constraint(equalTo: timeLabel.rightAnchor, constant: 40).isActive = true
         datePicker.topAnchor.constraint(equalTo: labelUILabel.bottomAnchor, constant: 40).isActive = true
+        
+        datePicker.addTarget(self, action: #selector(updateDate), for: .valueChanged)
         
         view.addSubview(isRepeatLabel)
         isRepeatLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40).isActive = true
@@ -63,10 +66,22 @@ class NewAlarmViewController: UIViewController {
         frequencyLabel.isHidden.toggle()
     }
     
+    @objc func updateDate(sender: UIDatePicker) {
+        date = sender.date
+    }
+    
     func setupLabelTextField() {
         view.addSubview(labelTextField)
         labelTextField.leftAnchor.constraint(equalTo: labelUILabel.rightAnchor, constant: 40).isActive = true
         labelTextField.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 60).isActive = true
+        labelTextField.delegate = self
+    }
+    
+    
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        label = textField.text ?? "Alarm"
+        return true
     }
     
 
