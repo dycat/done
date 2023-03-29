@@ -77,23 +77,10 @@ class NewAlarmViewController: UIViewController, UITextFieldDelegate {
         labelTextField.delegate = self
     }
     
-    
-    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         label = textField.text ?? "Alarm"
         return true
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
     
     let titleLabel = {
         let label = UILabel()
