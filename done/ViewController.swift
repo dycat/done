@@ -8,7 +8,7 @@
 import UIKit
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    let alarms: [Alarm] = [Alarm.test]
+    var alarms: [Alarm] = [Alarm.test]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,7 +18,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         setupBarButton()
         self.navigationItem.title = "Alarms"
         view.backgroundColor = .systemBackground
-
+        loadAlarms()
+    }
+    
+    func loadAlarms() {
+        let userDefualts = UserDefaults.standard
+        let savedAlarms = userDefualts.array(forKey: "alarms") as? [Alarm] ?? []
+        alarms = savedAlarms
     }
     
     func setupBarButton() {
