@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import UserNotifications
 
 class NewAlarmViewController: UIViewController, UITextFieldDelegate {
     
@@ -155,13 +156,51 @@ class NewAlarmViewController: UIViewController, UITextFieldDelegate {
         return button
     }()
     
-    // TODO: set notification
-    func setNotification() {
-        
-    }
-    
     // TODO: Persistence
     func save() {
         
+    }
+}
+
+extension NewAlarmViewController {
+    // TODO: set notification
+    func setNotification() {
+        grandAuthorization()
+        let content = setUpNotificationContent()
+        setupNotificationCenter(content)
+    }
+    
+    func grandAuthorization() {
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound]) { granted, error in
+            if granted {
+                print("Notification Authorized!")
+            } else {
+                
+            }
+        }
+    }
+    
+    func setUpNotificationContent() -> UNMutableNotificationContent {
+        let content = UNMutableNotificationContent()
+        content.title = "Wake up!"
+        content.body = "It's time to start your day."
+        content.sound = UNNotificationSound.default
+        return content
+    }
+    
+    func setupNotificationCenter (_ content: UNNotificationContent) {
+        var dateComponents = DateComponents()
+        dateComponents.hour = 21
+        dateComponents.minute = 39
+        
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+        
+        let notificationCenter = UNUserNotificationCenter.current()
+        notificationCenter.add(request) { err in
+            if let err = err {
+                print("Error scheduling notification: \(err.localizedDescription)")
+            }
+        }
     }
 }
