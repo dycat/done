@@ -158,12 +158,17 @@ class NewAlarmViewController: UIViewController, UITextFieldDelegate {
     
     // TODO: Persistence
     func save() {
-        
+        let alarm = Alarm(label: label, time: date.formatted(), isOn: true)
+        let userdefualts = UserDefaults.standard
+        var savedArray = userdefualts.array(forKey: "alarms") as? [Alarm] ?? []
+        savedArray.append(alarm)
+        userdefualts.set(savedArray, forKey: "alarms")
     }
 }
 
+
 extension NewAlarmViewController {
-    // TODO: set notification
+    // MARK: Setup Notification
     func setNotification() {
         grandAuthorization()
         let content = setUpNotificationContent()
