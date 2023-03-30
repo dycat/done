@@ -154,4 +154,14 @@ class NewAlarmViewController: UIViewController, UITextFieldDelegate {
         button.setTitleColor(UIColor.systemRed, for: .normal)
         return button
     }()
+    
+    // TODO: set notification
+    func setNotification() {
+        
+    }
+    
+    // TODO: Persistence
+    func save() {
+        
+    }
 }
