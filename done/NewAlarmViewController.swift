@@ -159,6 +159,8 @@ class NewAlarmViewController: UIViewController, UITextFieldDelegate {
     // TODO: Persistence
     func save() {
         let alarm = Alarm(label: label, time: date.formatted(), isOn: true)
+        // TODO: Init userdefaults with suitname
+        // UserDefaults(suiteName: "")
         let userdefualts = UserDefaults.standard
         var savedArray = userdefualts.array(forKey: "alarms") as? [Alarm] ?? []
         savedArray.append(alarm)
