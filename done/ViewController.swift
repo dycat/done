@@ -23,8 +23,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func loadAlarms() {
         let userDefualts = UserDefaults.standard
-        let savedAlarms = userDefualts.array(forKey: "alarms") as? [Alarm] ?? []
-        alarms = savedAlarms
+        if let encodedData = userDefualts.object(forKey: "alarms") as? Data {
+            let decoder = JSONDecoder()
+            do {
+                let decodedData = try decoder.decode([Alarm].self, from: encodedData)
+                alarms = decodedData
+            } catch {
+                
+            }
+        }
     }
     
     func setupBarButton() {

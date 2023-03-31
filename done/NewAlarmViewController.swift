@@ -60,6 +60,7 @@ class NewAlarmViewController: UIViewController, UITextFieldDelegate {
         view.addSubview(saveButton)
         saveButton.bottomAnchor.constraint(equalTo: cancelButton.topAnchor, constant: -20).isActive = true
         saveButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        saveButton.addTarget(self, action: #selector(save), for: .touchUpInside)
         
     }
     
@@ -157,14 +158,30 @@ class NewAlarmViewController: UIViewController, UITextFieldDelegate {
     }()
     
     // TODO: Persistence
-    func save() {
+    @objc func save() {
         let alarm = Alarm(label: label, time: date.formatted(), isOn: true)
         // TODO: Init userdefaults with suitname
         // UserDefaults(suiteName: "")
         let userdefualts = UserDefaults.standard
-        var savedArray = userdefualts.array(forKey: "alarms") as? [Alarm] ?? []
-        savedArray.append(alarm)
-        userdefualts.set(savedArray, forKey: "alarms")
+        if let savedAlarm = userdefualts.object(forKey: "alarms") as? Data {
+            let decoder = JSONDecoder()
+            do {
+                var alarms = try decoder.decode([Alarm].self, from: savedAlarm)
+                alarms.append(alarm)
+                print(alarms)
+                let encoder = JSONEncoder()
+                let jsonData = try encoder.encode(alarms)
+                userdefualts.set(jsonData, forKey: "alarms")
+                
+            } catch {
+                print("fail to save people")
+            }
+        } else {
+            print("Cast to Data failed.")
+        }
+        
+        _ = navigationController?.popViewController(animated: true)
+        
     }
 }
 

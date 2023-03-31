@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Alarm {
+struct Alarm: Codable {
     var label: String
     var time: String
     var isOn: Bool
