@@ -53,7 +53,7 @@ extension Bundle {
         
     }
     
-    static func readFromUserDefaults<T: Decodable>(key: String) -> [T]?{
+    static func readFromUserDefaults<T: Decodable>(_ type: T.Type, key: String) -> [T]?{
         let userDefualts = UserDefaults.standard
         if let encodedData = userDefualts.object(forKey: key) as? Data {
             let decoder = JSONDecoder()

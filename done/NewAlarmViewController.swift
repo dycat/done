@@ -162,23 +162,7 @@ class NewAlarmViewController: UIViewController, UITextFieldDelegate {
         let alarm = Alarm(label: label, time: date.formatted(), isOn: true)
         // TODO: Init userdefaults with suitname
         // UserDefaults(suiteName: "")
-        let userdefualts = UserDefaults.standard
-        if let savedAlarm = userdefualts.object(forKey: "alarms") as? Data {
-            let decoder = JSONDecoder()
-            do {
-                var alarms = try decoder.decode([Alarm].self, from: savedAlarm)
-                alarms.append(alarm)
-                print(alarms)
-                let encoder = JSONEncoder()
-                let jsonData = try encoder.encode(alarms)
-                userdefualts.set(jsonData, forKey: "alarms")
-                
-            } catch {
-                print("fail to save people")
-            }
-        } else {
-            print("Cast to Data failed.")
-        }
+        Bundle.saveToUserDefaults(item: alarm, key: Alarm.AlarmsSavingKey)
         
         _ = navigationController?.popViewController(animated: true)
         

@@ -19,25 +19,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         setupBarButton()
         self.navigationItem.title = "Alarms"
         view.backgroundColor = .systemBackground
-        loadAlarms()
-        tableView.reloadData()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
+        alarms = Bundle.readFromUserDefaults(Alarm.self, key: Alarm.AlarmsSavingKey) ?? []
         
-    }
-    
-    func loadAlarms() {
-        let userDefualts = UserDefaults.standard
-        if let encodedData = userDefualts.object(forKey: "alarms") as? Data {
-            let decoder = JSONDecoder()
-            do {
-                let decodedData = try decoder.decode([Alarm].self, from: encodedData)
-                alarms = decodedData
-            } catch {
-                
-            }
-        }
     }
     
     func setupBarButton() {
