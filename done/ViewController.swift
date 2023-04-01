@@ -80,4 +80,10 @@ extension ViewController {
             Bundle.saveArrayToUserDefaults(items: alarms, key: "alarms")
         }
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let editAlarmViewController = NewAlarmViewController()
+        navigationController?.pushViewController(editAlarmViewController, animated: true)
+    }
 }
