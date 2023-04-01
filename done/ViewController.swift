@@ -9,6 +9,7 @@ import UIKit
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var alarms: [Alarm] = [Alarm.test]
+    var tableView = UITableView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,6 +20,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.navigationItem.title = "Alarms"
         view.backgroundColor = .systemBackground
         loadAlarms()
+        tableView.reloadData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
     }
     
     func loadAlarms() {
@@ -53,7 +59,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func setupTableView() {
-        let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(AlarmTableViewCell.self, forCellReuseIdentifier: "Cell")
         view.addSubview(tableView)
@@ -83,5 +88,13 @@ extension ViewController {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            alarms.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+            Bundle.saveArrayToUserDefaults(items: alarms, key: "alarms")
+        }
     }
 }
