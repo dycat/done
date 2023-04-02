@@ -13,7 +13,11 @@ class NewAlarmViewController: UIViewController, UITextFieldDelegate {
     var viewControllerTitle = ""
     var label = "Alarm"
     var date = Date()
+    var mode: AlarmViewMode = .new
     
+    enum AlarmViewMode {
+        case new, edit
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

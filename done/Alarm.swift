@@ -29,7 +29,6 @@ extension Bundle {
         if let savedData = userdefualts.object(forKey: key) as? Data {
             do {
                 array = try decoder.decode([T].self, from: savedData)
-                
             } catch {
                 print("\(error.localizedDescription)")
             }
@@ -40,10 +39,9 @@ extension Bundle {
         do {
             let jsonData = try encoder.encode(array)
             userdefualts.set(jsonData, forKey: key)
-                
             } catch {
                 print("fail to save. \(error.localizedDescription)")
-            }
+        }
         
     }
     

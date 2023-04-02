@@ -18,8 +18,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         setupBarButton()
         self.navigationItem.title = "Alarms"
         view.backgroundColor = .systemBackground
-        alarms = Bundle.readFromUserDefaults(Alarm.self, key: Alarm.AlarmsSavingKey) ?? []
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        alarms = Bundle.readFromUserDefaults(Alarm.self, key: Alarm.AlarmsSavingKey) ?? []
+        tableView.reloadData()
     }
     
     func setupBarButton() {
