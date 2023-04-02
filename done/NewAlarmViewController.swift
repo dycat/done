@@ -14,6 +14,7 @@ class NewAlarmViewController: UIViewController, UITextFieldDelegate {
     var label = "Alarm"
     var date = Date()
     var mode: AlarmViewMode = .new
+    var alarm: Alarm = Alarm.test
     
     enum AlarmViewMode {
         case new, edit
@@ -43,6 +44,7 @@ class NewAlarmViewController: UIViewController, UITextFieldDelegate {
         labelTextField.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 60).isActive = true
         labelTextField.delegate = self
         labelTextField.addTarget(self, action: #selector(updateLabel), for: .valueChanged)
+        labelTextField.text = alarm.label
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
@@ -128,16 +130,28 @@ class NewAlarmViewController: UIViewController, UITextFieldDelegate {
         let alarm = Alarm(label: label, time: date.formatted(), isOn: true)
         // TODO: Init userdefaults with suitname
         // UserDefaults(suiteName: "")
-        Bundle.saveToUserDefaults(item: alarm, key: Alarm.AlarmsSavingKey)
+        switch mode {
+        case .new:
+            Bundle.saveToUserDefaults(item: alarm, key: Alarm.AlarmsSavingKey)
+        case .edit:
+            Bundle.updateUserDefaults()
+        }
+        
         
         _ = navigationController?.popViewController(animated: true)
         
     }
     
-    convenience init(_ title: String) {
+    convenience init(mode: AlarmViewMode, alarm: Alarm = Alarm.test) {
         self.init()
+        self.alarm = alarm
+        switch mode {
+        case .edit:
+            self.viewControllerTitle = "Edit Alarm"
+        case .new:
+            self.viewControllerTitle = "New Alarm"
+        }
         
-        self.viewControllerTitle = title
     }
     
 }
@@ -156,7 +170,7 @@ extension NewAlarmViewController {
         view.addSubview(labelUILabel)
         labelUILabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40).isActive = true
         labelUILabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 60).isActive = true
-        
+
         setupLabelTextField()
         
         view.addSubview(timeLabel)
@@ -167,6 +181,11 @@ extension NewAlarmViewController {
         datePicker.leftAnchor.constraint(equalTo: timeLabel.rightAnchor, constant: 40).isActive = true
         datePicker.topAnchor.constraint(equalTo: labelUILabel.bottomAnchor, constant: 40).isActive = true
         datePicker.addTarget(self, action: #selector(updateDate), for: .valueChanged)
+        do {
+            datePicker.date = try Date(alarm.time, strategy: .dateTime)
+        } catch {
+            
+        }
         
         view.addSubview(isRepeatLabel)
         isRepeatLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40).isActive = true

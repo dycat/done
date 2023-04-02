@@ -33,7 +33,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     @objc func openAddView() {
         // Create a new instance of the view controller you want to open
-        let newAlarmViewController = NewAlarmViewController("New Alarm")
+        let newAlarmViewController = NewAlarmViewController(mode: .new)
 
         // Get a reference to the navigation controller
         guard let navigationController = self.navigationController else {
@@ -86,7 +86,7 @@ extension ViewController {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let editAlarmViewController = NewAlarmViewController("Edit Alarm")
+        let editAlarmViewController = NewAlarmViewController(mode: .edit, alarm: alarms[indexPath.row])
         navigationController?.pushViewController(editAlarmViewController, animated: true)
     }
 }

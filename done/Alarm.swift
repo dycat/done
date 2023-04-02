@@ -45,6 +45,10 @@ extension Bundle {
         
     }
     
+    static func updateUserDefaults() {
+        
+    }
+    
     static func saveArrayToUserDefaults<T: Codable>(items: [T], key: String) {
         let userdefualts = UserDefaults.standard
         do {
