@@ -177,11 +177,16 @@ extension NewAlarmViewController {
         view.addSubview(cancelButton)
         cancelButton.bottomAnchor.constraint(equalTo: magin.bottomAnchor, constant: -80).isActive = true
         cancelButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        cancelButton.addTarget(self, action: #selector(cancel), for: .touchUpInside)
         
         view.addSubview(saveButton)
         saveButton.bottomAnchor.constraint(equalTo: cancelButton.topAnchor, constant: -20).isActive = true
         saveButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         saveButton.addTarget(self, action: #selector(save), for: .touchUpInside)
+    }
+    
+    @objc func cancel() {
+        navigationController?.popViewController(animated: true)
     }
     
 }
