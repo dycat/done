@@ -29,11 +29,16 @@ class NewAlarmViewController: UIViewController, UITextFieldDelegate {
         date = sender.date
     }
     
+    @objc func updateLabel(sender: UITextField) {
+        label = sender.text ?? ""
+    }
+    
     func setupLabelTextField() {
         view.addSubview(labelTextField)
         labelTextField.leftAnchor.constraint(equalTo: labelUILabel.rightAnchor, constant: 40).isActive = true
         labelTextField.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 60).isActive = true
         labelTextField.delegate = self
+        labelTextField.addTarget(self, action: #selector(updateLabel), for: .valueChanged)
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
@@ -157,7 +162,6 @@ extension NewAlarmViewController {
         view.addSubview(datePicker)
         datePicker.leftAnchor.constraint(equalTo: timeLabel.rightAnchor, constant: 40).isActive = true
         datePicker.topAnchor.constraint(equalTo: labelUILabel.bottomAnchor, constant: 40).isActive = true
-        
         datePicker.addTarget(self, action: #selector(updateDate), for: .valueChanged)
         
         view.addSubview(isRepeatLabel)
