@@ -20,6 +20,7 @@
 		2F23CEB629C88CDB005F7CB8 /* doneUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F23CEB529C88CDB005F7CB8 /* doneUITestsLaunchTests.swift */; };
 		2F23CEC329CDC4CF005F7CB8 /* Alarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F23CEC229CDC4CF005F7CB8 /* Alarm.swift */; };
 		2F23CEC529CDC97F005F7CB8 /* NewAlarmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F23CEC429CDC97F005F7CB8 /* NewAlarmViewController.swift */; };
+		2F3BFCE429D96CAF00890901 /* done.xctestplan in Resources */ = {isa = PBXBuildFile; fileRef = 2F3BFCE329D96CAF00890901 /* done.xctestplan */; };
 		2FCA274129D03F4E008E86B7 /* AlarmTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCA274029D03F4E008E86B7 /* AlarmTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -58,6 +59,7 @@
 		2F23CEB529C88CDB005F7CB8 /* doneUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = doneUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		2F23CEC229CDC4CF005F7CB8 /* Alarm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alarm.swift; sourceTree = "<group>"; };
 		2F23CEC429CDC97F005F7CB8 /* NewAlarmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewAlarmViewController.swift; sourceTree = "<group>"; };
+		2F3BFCE329D96CAF00890901 /* done.xctestplan */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = done.xctestplan; sourceTree = "<group>"; };
 		2FCA270729D03432008E86B7 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		2FCA274029D03F4E008E86B7 /* AlarmTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -130,6 +132,7 @@
 		2F23CEA829C88CDB005F7CB8 /* doneTests */ = {
 			isa = PBXGroup;
 			children = (
+				2F3BFCE329D96CAF00890901 /* done.xctestplan */,
 				2F23CEA929C88CDB005F7CB8 /* doneTests.swift */,
 			);
 			path = doneTests;
@@ -258,6 +261,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2F3BFCE429D96CAF00890901 /* done.xctestplan in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
