@@ -127,7 +127,7 @@ class NewAlarmViewController: UIViewController, UITextFieldDelegate {
     
     // TODO: Persistence
     @objc func save() {
-        let alarm = Alarm(label: label, time: date.formatted(), isOn: true)
+        let alarm = Alarm(id: UUID(), label: label, time: date.formatted(), isOn: true)
         // TODO: Init userdefaults with suitname
         // UserDefaults(suiteName: "")
         switch mode {

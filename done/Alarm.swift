@@ -8,6 +8,7 @@
 import Foundation
 
 struct Alarm: Codable {
+    let id: UUID
     var label: String
     var time: String
     var isOn: Bool
@@ -15,7 +16,7 @@ struct Alarm: Codable {
 
 
 extension Alarm {
-    static var test: Alarm = Alarm(label: "Morning", time: "8:00", isOn: true)
+    static var test: Alarm = Alarm(id: UUID(), label: "Morning", time: "8:00", isOn: true)
     static var AlarmsSavingKey = "alarms"
 }
 
