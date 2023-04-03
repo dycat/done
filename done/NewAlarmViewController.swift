@@ -134,9 +134,8 @@ class NewAlarmViewController: UIViewController, UITextFieldDelegate {
         case .new:
             Bundle.saveToUserDefaults(item: alarm, key: Alarm.AlarmsSavingKey)
         case .edit:
-            Bundle.updateUserDefaults()
+            Bundle.updateUserDefaults(alarm: alarm, key: Alarm.AlarmsSavingKey)
         }
-        
         
         _ = navigationController?.popViewController(animated: true)
         

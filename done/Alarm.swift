@@ -21,6 +21,7 @@ extension Alarm {
 }
 
 extension Bundle {
+    
     static func saveToUserDefaults<T: Codable>(item: T, key: String) {
         let userdefualts = UserDefaults.standard
         let decoder = JSONDecoder()
@@ -47,8 +48,22 @@ extension Bundle {
     }
     
     // TODO: update exist alarm
-    static func updateUserDefaults() {
-        
+    static func updateUserDefaults(alarm: Alarm, key: String) {
+        let userDefaults = UserDefaults.standard
+        var savedAlarms = Bundle.readFromUserDefaults(Alarm.self, key: Alarm.AlarmsSavingKey)
+        if let row = savedAlarms?.firstIndex(where: {$0.id == alarm.id}) {
+            savedAlarms?[row].isOn = alarm.isOn
+            savedAlarms?[row].label = alarm.label
+            savedAlarms?[row].time = alarm.time
+        }
+        do {
+            let encoder = JSONEncoder()
+            let jsonData = try encoder.encode(savedAlarms)
+            userDefaults.set(jsonData, forKey: key)
+            
+        } catch {
+            print("\(error.localizedDescription)")
+        }
     }
     
     static func saveArrayToUserDefaults<T: Codable>(items: [T], key: String) {
