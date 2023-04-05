@@ -136,7 +136,7 @@ class NewAlarmViewController: UIViewController, UITextFieldDelegate {
         case .edit:
             Bundle.updateUserDefaults(alarm: alarm, key: Alarm.AlarmsSavingKey)
         }
-        
+        setNotification()
         _ = navigationController?.popViewController(animated: true)
         
     }
@@ -237,18 +237,16 @@ extension NewAlarmViewController {
     
     func setUpNotificationContent() -> UNMutableNotificationContent {
         let content = UNMutableNotificationContent()
-        content.title = "Wake up!"
+        content.title = label
         content.body = "It's time to start your day."
         content.sound = UNNotificationSound.default
         return content
     }
     
     func setupNotificationCenter (_ content: UNNotificationContent) {
-        var dateComponents = DateComponents()
-        dateComponents.hour = 21
-        dateComponents.minute = 39
+        var dateComponents = Calendar.current.dateComponents([.hour, .minute], from: date)
         
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
         let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
         
         let notificationCenter = UNUserNotificationCenter.current()
