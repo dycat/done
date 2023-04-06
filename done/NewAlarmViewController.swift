@@ -127,7 +127,6 @@ class NewAlarmViewController: UIViewController, UITextFieldDelegate {
     
     // TODO: Persistence
     @objc func save() {
-        let alarm = Alarm(id: UUID(), label: label, time: date.formatted(), isOn: true)
         // TODO: Init userdefaults with suitname
         // UserDefaults(suiteName: "")
         switch mode {
@@ -144,6 +143,7 @@ class NewAlarmViewController: UIViewController, UITextFieldDelegate {
     convenience init(mode: AlarmViewMode, alarm: Alarm = Alarm.test) {
         self.init()
         self.alarm = alarm
+        self.mode = mode
         switch mode {
         case .edit:
             self.viewControllerTitle = "Edit Alarm"

@@ -55,15 +55,19 @@ extension Bundle {
             savedAlarms?[row].isOn = alarm.isOn
             savedAlarms?[row].label = alarm.label
             savedAlarms?[row].time = alarm.time
-        }
-        do {
-            let encoder = JSONEncoder()
-            let jsonData = try encoder.encode(savedAlarms)
-            userDefaults.set(jsonData, forKey: key)
             
-        } catch {
-            print("\(error.localizedDescription)")
+            do {
+                let encoder = JSONEncoder()
+                let jsonData = try encoder.encode(savedAlarms)
+                userDefaults.set(jsonData, forKey: key)
+                
+            } catch {
+                print("\(error.localizedDescription)")
+            }
+        } else {
+            print("Counldn't find the Alarm")
         }
+        
     }
     
     static func saveArrayToUserDefaults<T: Codable>(items: [T], key: String) {
