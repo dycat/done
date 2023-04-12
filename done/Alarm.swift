@@ -56,7 +56,7 @@ extension Bundle {
             savedAlarms?[row].label = alarm.label
             savedAlarms?[row].time = alarm.time
             
-            do {
+            do { 
                 let encoder = JSONEncoder()
                 let jsonData = try encoder.encode(savedAlarms)
                 userDefaults.set(jsonData, forKey: key)
