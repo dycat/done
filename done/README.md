@@ -11,3 +11,5 @@
 ## TODOs
 
 [ ] add icon
+[ ] time formatter
+[ ] add more icons to buttons
