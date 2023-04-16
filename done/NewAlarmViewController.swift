@@ -258,3 +258,21 @@ extension NewAlarmViewController {
     }
     
 }
+
+
+extension NewAlarmViewController {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        labelTextField.resignFirstResponder()
+        return true
+    }
+    
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        labelTextField.resignFirstResponder()
+        return true
+    
+    }
+    
+    
+        
+    
+}
