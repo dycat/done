@@ -70,7 +70,7 @@ extension ViewController {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! AlarmTableViewCell
         cell.label.text = alarms[indexPath.row].label
-        cell.time.text = alarms[indexPath.row].time
+        cell.time.text = toReadableTime(timeString: alarms[indexPath.row].time)
         cell.isOn.isOn = alarms[indexPath.row].isOn
         return cell
     }
@@ -91,5 +91,17 @@ extension ViewController {
         tableView.deselectRow(at: indexPath, animated: true)
         let editAlarmViewController = NewAlarmViewController(mode: .edit, alarm: alarms[indexPath.row])
         navigationController?.pushViewController(editAlarmViewController, animated: true)
+    }
+    
+    func toReadableTime(timeString: String) -> String {
+        do {
+            let date = try Date(timeString, strategy: .iso8601)
+            print(date)
+            return date.formatted(date: .omitted, time: .shortened)
+        } catch {
+            print("\(error.localizedDescription)")
+        }
+        
+        return timeString
     }
 }

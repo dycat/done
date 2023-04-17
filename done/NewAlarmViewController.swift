@@ -131,7 +131,7 @@ class NewAlarmViewController: UIViewController, UITextFieldDelegate {
         // UserDefaults(suiteName: "")
         alarm.isOn = true
         alarm.label = label
-        alarm.time = date.formatted()
+        alarm.time = date.ISO8601Format()
         switch mode {
         case .new:
             Bundle.saveToUserDefaults(item: alarm, key: Alarm.AlarmsSavingKey)
