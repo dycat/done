@@ -129,6 +129,9 @@ class NewAlarmViewController: UIViewController, UITextFieldDelegate {
     @objc func save() {
         // TODO: Init userdefaults with suitname
         // UserDefaults(suiteName: "")
+        alarm.isOn = true
+        alarm.label = label
+        alarm.time = date.formatted()
         switch mode {
         case .new:
             Bundle.saveToUserDefaults(item: alarm, key: Alarm.AlarmsSavingKey)
@@ -142,13 +145,15 @@ class NewAlarmViewController: UIViewController, UITextFieldDelegate {
     
     convenience init(mode: AlarmViewMode, alarm: Alarm = Alarm.test) {
         self.init()
-        self.alarm = alarm
+        
         self.mode = mode
         switch mode {
         case .edit:
             self.viewControllerTitle = "Edit Alarm"
+            self.alarm = alarm
         case .new:
             self.viewControllerTitle = "New Alarm"
+            self.alarm = alarm
         }
         
     }
@@ -244,7 +249,7 @@ extension NewAlarmViewController {
     }
     
     func setupNotificationCenter (_ content: UNNotificationContent) {
-        var dateComponents = Calendar.current.dateComponents([.hour, .minute], from: date)
+        let dateComponents = Calendar.current.dateComponents([.hour, .minute], from: date)
         
         let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
         let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
@@ -271,8 +276,5 @@ extension NewAlarmViewController {
         return true
     
     }
-    
-    
-        
     
 }

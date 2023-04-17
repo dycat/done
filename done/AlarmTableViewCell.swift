@@ -9,9 +9,9 @@ import UIKit
 
 class AlarmTableViewCell: UITableViewCell {
     
-    let time = UILabel()
-    let label = UILabel()
-    let isOn = UISwitch()
+    var time = UILabel()
+    var label = UILabel()
+    var isOn = UISwitch()
 
     override func awakeFromNib() {
         super.awakeFromNib()
