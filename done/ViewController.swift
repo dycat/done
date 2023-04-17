@@ -71,6 +71,7 @@ extension ViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! AlarmTableViewCell
         cell.label.text = alarms[indexPath.row].label
         cell.time.text = alarms[indexPath.row].time
+        cell.isOn.isOn = alarms[indexPath.row].isOn
         return cell
     }
     
