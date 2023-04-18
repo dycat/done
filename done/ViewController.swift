@@ -18,8 +18,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         setupBarButton()
         self.navigationItem.title = "Alarms"
         view.backgroundColor = .systemBackground
-        alarms = Bundle.readFromUserDefaults(Alarm.self, key: Alarm.AlarmsSavingKey) ?? []
-        tableView.reloadData()
         
     }
     
@@ -96,7 +94,7 @@ extension ViewController {
     func toReadableTime(timeString: String) -> String {
         do {
             let date = try Date(timeString, strategy: .iso8601)
-            print(date)
+
             return date.formatted(date: .omitted, time: .shortened)
         } catch {
             print("\(error.localizedDescription)")
