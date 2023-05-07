@@ -10,6 +10,6 @@
 
 ## TODOs
 
-[ ] add icon
+[x] add icon
 [ ] time formatter
 [ ] add more icons to buttons
