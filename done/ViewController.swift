@@ -27,7 +27,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func setupBarButton() {
-        let button = UIBarButtonItem(title: "Add", style: .plain, target: self, action:  #selector(openAddView))
+        let button = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(openAddView))
         self.navigationItem.rightBarButtonItem = button
     }
     
