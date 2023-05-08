@@ -9,7 +9,6 @@ import UIKit
 
 class AlarmTableViewCell: UITableViewCell {
     
-    let alarm: Alarm = Alarm.test
     var date = Date()
     var time = UILabel()
     var label = UILabel()
