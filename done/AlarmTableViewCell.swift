@@ -9,6 +9,8 @@ import UIKit
 
 class AlarmTableViewCell: UITableViewCell {
     
+    let alarm: Alarm = Alarm.test
+    var date = Date()
     var time = UILabel()
     var label = UILabel()
     var isOn = UISwitch()
@@ -35,6 +37,7 @@ class AlarmTableViewCell: UITableViewCell {
         contentView.addSubview(isOn)
         isOn.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -20).isActive = true
         isOn.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
+        isOn.addTarget(self, action: #selector(switchPressed), for: .valueChanged)
     }
     
     required init?(coder: NSCoder) {
@@ -46,6 +49,47 @@ class AlarmTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+
+    @objc func switchPressed(_ switcher: UISwitch) {
+        if switcher.isOn {
+            print("The switch is On.")
+            grandAuthorization()
+            let content = setUpNotificationContent()
+            setupNotificationCenter(content)
+        }
+    }
+    
+    func grandAuthorization() {
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound]) { granted, error in
+            if granted {
+                print("Notification Authorized!")
+            } else {
+                
+            }
+        }
+    }
+    
+    func setUpNotificationContent() -> UNMutableNotificationContent {
+        let content = UNMutableNotificationContent()
+        content.title = label.text ?? ""
+        content.body = "It's time to start your day."
+        content.sound = UNNotificationSound.default
+        return content
+    }
+    
+    func setupNotificationCenter (_ content: UNNotificationContent) {
+        let dateComponents = Calendar.current.dateComponents([.hour, .minute], from: date)
+        
+        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
+        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+        
+        let notificationCenter = UNUserNotificationCenter.current()
+        notificationCenter.add(request) { err in
+            if let err = err {
+                print("Error scheduling notification: \(err.localizedDescription)")
+            }
+        }
     }
 
 }
