@@ -11,5 +11,6 @@
 ## TODOs
 
 [x] add icon
-[ ] time formatter
-[ ] add more icons to buttons
+[x] time formatter
+[x] add more icons to buttons
+[] Last remind: Live Activities
