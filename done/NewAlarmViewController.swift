@@ -8,7 +8,7 @@
 import UIKit
 import UserNotifications
 
-class NewAlarmViewController: UIViewController, UITextFieldDelegate {
+class NewAlarmViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
     
     var viewControllerTitle = ""
     var label = "Alarm"
@@ -28,6 +28,7 @@ class NewAlarmViewController: UIViewController, UITextFieldDelegate {
     
     @objc func switchOnOff() {
         frequencyLabel.isHidden.toggle()
+        frequencyPicker.isHidden.toggle()
     }
     
     @objc func updateDate(sender: UIDatePicker) {
@@ -125,6 +126,13 @@ class NewAlarmViewController: UIViewController, UITextFieldDelegate {
         return button
     }()
     
+    let frequencyPicker = {
+        let picker = UIPickerView()
+        picker.translatesAutoresizingMaskIntoConstraints = false
+        picker.isHidden = true
+        return picker
+    }()
+    
     // TODO: Persistence
     @objc func save() {
         // TODO: Init userdefaults with suitname
@@ -205,6 +213,13 @@ extension NewAlarmViewController {
         
         isRepeatSwitch.addTarget(self, action: #selector(switchOnOff), for: .valueChanged)
         
+        view.addSubview(frequencyPicker)
+        frequencyPicker.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 40).isActive = true
+        frequencyPicker.topAnchor.constraint(equalTo: isRepeatSwitch.bottomAnchor, constant: 40).isActive = true
+        
+        frequencyPicker.delegate = self
+        frequencyPicker.dataSource = self
+        
         view.addSubview(cancelButton)
         cancelButton.bottomAnchor.constraint(equalTo: magin.bottomAnchor, constant: -80).isActive = true
         cancelButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
@@ -277,4 +292,19 @@ extension NewAlarmViewController {
     
     }
     
+}
+
+extension NewAlarmViewController {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return 7
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        let week = ["Mon", "Feb", "Wed", "Thu", "Fri", "Sat", "Sun"]
+        return week[row]
+    }
 }
