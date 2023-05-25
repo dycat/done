@@ -13,6 +13,13 @@
 ## TODOs
 
 [x] add icon
+
 [x] time formatter
+
 [x] add more icons to buttons
+
 [ ] Last remind: Live Activities
+
+[ ] Add UITests
+
+[ ] Add Unit tests
