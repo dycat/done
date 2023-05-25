@@ -1,5 +1,7 @@
 #  Done - The Repeateable Alarm
 
+The main functions of the App is remind things and used as timers. The aim is easy use and can reuse the reminder and timer.
+
 ## Scene
 
 1. Add a list of alarm
